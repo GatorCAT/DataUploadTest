@@ -93,9 +93,6 @@ def compute_difference(numbers: List[float]) -> List[float]:
         differences.append(number - mean)
     return differences
 ```
-
-This function is used to compute the difference between a given value, and the mean of the entire set.  For example if the mean ended up being the number 7, and one of our numbers was 9, then our given number would have a difference of 2.  While the number 5 would have a difference of -2, due to it being smaller than the mean.  We first calculate the mean using the `compute_mean()` function declared prior.  Then we declare an empty list for our output, and iterate through the list that was given as input.  From there we take the number found within our list, and subtract the calculated mean from it, giving us our difference.  That value is then appended to the list that we declared.  After the for loop is finished running, the list of all of the calculated values is returned.
-
 ## Professional Development
 
 ### What are some examples of computer science skills that were important 30 years ago but are less important to learn now? Why are they less important now?
