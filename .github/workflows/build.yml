@@ -106,3 +106,8 @@ jobs:
           if: always()
           run:  |
             gradle grade
+        
+        - name: Run GatorGrader
+          if: always()
+          run:  |
+            gradle report
