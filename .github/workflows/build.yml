@@ -21,6 +21,10 @@ jobs:
         # Performs all actions on different versions of Python
         python-version: [3.9]
     # Define the workflow steps
+
+    outputs:
+      output1: ${{}}
+
     steps:
     # Checkout the code of the repository
         - name: Check out Repository Code
@@ -103,11 +107,18 @@ jobs:
             gradle --version
         # Run GatorGrader: see config/gatorgrader.yml
         - name: Run GatorGrader
+          id: GatorGrader
           if: always()
           run:  |
             gradle grade
-        
-        - name: Run GatorGrader
-          if: always()
-          run:  |
-            gradle report
+
+        - name: Send output to next Job
+          - run: mkdir -p job_output
+
+          - run: echo ${{steps.GatorGrader.outputs.stdout}} > job_output/outputs.txt
+
+          - uses: actions/upload-artifact@master
+            with:
+              name: my-artifact
+              path: path/to/artifact
+
