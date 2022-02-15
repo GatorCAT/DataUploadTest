@@ -106,7 +106,7 @@ jobs:
           id: GatorGrader
           if: always()
           run:  |
-            echo "::set-output name=mix-ecto_migrate::$(gradle grade)\n"
+            echo "::set-output name=stdout::$(gradle grade)\n"
         - name: Send output to next Job
           run:  |
             mkdir -p job_output
