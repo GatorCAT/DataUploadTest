@@ -109,5 +109,6 @@ jobs:
           if: always()
           run:  |
             echo "::set-output name=stdout::$(gradle grade)\n"
+
         - name: Display Output
-          run: echo "${{ steps.gatorgrade.outputs.stdout }}"
+          run: echo "${{ steps.gatorgrade.outputs.ggoutput }}"
