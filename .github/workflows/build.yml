@@ -20,6 +20,8 @@ jobs:
       matrix:
         # Performs all actions on different versions of Python
         python-version: [3.9]
+    outputs:
+      ggoutput: ${{steps.gatorgrade.outputs.stdout}}
     # Define the workflow steps
     steps:
     # Checkout the code of the repository
@@ -103,14 +105,9 @@ jobs:
             gradle --version
         # Run GatorGrader: see config/gatorgrader.yml
         - name: Run GatorGrader
-          id: GatorGrader
+          id: gatorgrade
           if: always()
           run:  |
-            gradle grade
-          env:
-            ggout: $(gradle grade)
-        - name: Send output to next Job
-          run:  |
-            mkdir -p job_output
-            echo $ggout > job_output/outputs.txt
-            cat job_output/outputs.txt
+            echo "::set-output name=stdout::$(gradle grade)\n"
+        - name: Display Output
+          run: echo "${{ steps.gatorgrade.outputs.stdout }}"
