@@ -110,7 +110,12 @@ jobs:
           id: gatorgrade
           if: always()
           run:  |
-              echo $(gradle grade) >> output.txt
+              MY_STRING = echo $(gradle grade)
+              MY_STRING="${MY_STRING//'%'/'%25'}"
+              MY_STRING="${MY_STRING//$'\n'/'%0A'}"
+              MY_STRING="${MY_STRING//$'\r'/'%0D'}"
+              echo "::set-output name=content::$MY_STRING"
+              echo $MY_STRING >> output.txt
 
         - name: Display Output
           run: cat output.txt
