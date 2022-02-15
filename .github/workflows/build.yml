@@ -110,7 +110,7 @@ jobs:
           id: gatorgrade
           if: always()
           run:  |
-            MY_STRING = echo $(gradle grade)
+            MY_STRING = $(echo $(gradle grade))
             MY_STRING="${MY_STRING//'%'/'%25'}"
             MY_STRING="${MY_STRING//$'\n'/'%0A'}"
             MY_STRING="${MY_STRING//$'\r'/'%0D'}"
