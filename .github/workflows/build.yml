@@ -104,11 +104,13 @@ jobs:
           run: |
             gradle --version
         # Run GatorGrader: see config/gatorgrader.yml
+        - name: Set up outputfile
+          run: echo "${{ github.repository }}" > output.txt
         - name: Run GatorGrader
           id: gatorgrade
           if: always()
           run:  |
-            echo "::set-output name=stdout::$(gradle grade)\n"
+              gradle grade >> output.txt
 
         - name: Display Output
-          run: echo "${{ steps.gatorgrade.outputs.ggoutput }}"
+          run: cat output.txt
