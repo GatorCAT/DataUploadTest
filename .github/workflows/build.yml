@@ -21,10 +21,6 @@ jobs:
         # Performs all actions on different versions of Python
         python-version: [3.9]
     # Define the workflow steps
-
-    outputs:
-      output1: ${{}}
-
     steps:
     # Checkout the code of the repository
         - name: Check out Repository Code
@@ -112,6 +108,6 @@ jobs:
           run:  |
             gradle grade
         - name: Send output to next Job
-          run: mkdir -p job_output
-
-          run: echo ${{steps.GatorGrader.outputs.stdout}} > job_output/outputs.txt
+          run: |
+            mkdir -p job_output
+            echo ${{steps.GatorGrader.outputs.stdout}} > job_output/outputs.txt
