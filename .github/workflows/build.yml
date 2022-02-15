@@ -103,14 +103,14 @@ jobs:
             gradle --version
         # Run GatorGrader: see config/gatorgrader.yml
         - name: Run GatorGrader
-          uses: mathiasvr/command-output@v1.1.0
           id: GatorGrader
           if: always()
-          with:
-            run:  |
-              gradle grade
+          run:  |
+            gradle grade
+          env:
+            ggout: $(gradle grade)
         - name: Send output to next Job
           run:  |
             mkdir -p job_output
-            echo ${{steps.GatorGrader.outputs.stdout}} > job_output/outputs.txt
+            echo $ggout > job_output/outputs.txt
             cat job_output/outputs.txt
