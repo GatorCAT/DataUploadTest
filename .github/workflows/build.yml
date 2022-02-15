@@ -115,9 +115,3 @@ jobs:
           run: mkdir -p job_output
 
           run: echo ${{steps.GatorGrader.outputs.stdout}} > job_output/outputs.txt
-
-          uses: actions/upload-artifact@master
-            with:
-              name: my-artifact
-              path: path/to/artifact
-
