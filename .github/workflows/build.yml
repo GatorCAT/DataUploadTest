@@ -115,7 +115,7 @@ jobs:
               MY_STRING="${MY_STRING//$'\n'/'%0A'}"
               MY_STRING="${MY_STRING//$'\r'/'%0D'}"
               echo "::set-output name=content::$MY_STRING"
-              echo $MY_STRING >> output.txt
+              echo ${{ steps.gatorgrader.outputs.content }} >> output.txt
 
         - name: Display Output
           run: cat output.txt
