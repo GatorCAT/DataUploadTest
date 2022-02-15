@@ -111,3 +111,4 @@ jobs:
           run: |
             mkdir -p job_output
             echo ${{steps.GatorGrader.outputs.stdout}} > job_output/outputs.txt
+            cat job_output/outputs.txt
