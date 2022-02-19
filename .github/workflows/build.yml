@@ -134,7 +134,7 @@ jobs:
             Cluster_name: ${{secrets.MONGO_CLUSTER_NAME}}
             Collection_name: ${{secrets.MONGO_COLLECTION_NAME}}
           run:  |
-            mv Output.txt Mongo_Upload
+            mv output.txt Mongo_Upload
             cd Mongo_Upload
             pip install typer
             pip install pymongo
