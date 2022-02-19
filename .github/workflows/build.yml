@@ -109,7 +109,6 @@ jobs:
             gradle grade
 
         - name: Set up outputfile
-          if: always()
           run:  | 
             echo "${{ github.repository }}" > output.txt
             cat output.txt
@@ -119,6 +118,16 @@ jobs:
           run:  |
             echo $(gradle grade) >> output.txt
 
+        - name: Fetch Upload Repo
+          uses: actions/checkout@master
+          with: 
+            repository: GatorCAT/GatorCATUpload
+        
+        - name: Upload to MongoDB
+          run:  |
+            cd GatorCATUpload
+            poetry install
+            poetry run python upload_to_mongo.py Output.txt ${{secrets.MONGO_USERNAME}} ${{secrets.MONGO_PASSWORD}} ${{secrets.MONGO_CLUSTER_NAME}} ${{secrets.MONGO_COLLECTION_NAME}}
+
         - name: Display Output
-          if: always()
           run: cat output.txt
