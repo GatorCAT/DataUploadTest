@@ -109,17 +109,16 @@ jobs:
             gradle grade
 
         - name: Set up outputfile
+          if: always()
           run:  | 
             echo "${{ github.repository }}" > output.txt
             cat output.txt
 
         - name: Gather GatorGrader Output
+          if: always()
           run:  |
-            MY_STRING=$(gradle grade)
-            MY_STRING="${MY_STRING//'%'/'%25'}"
-            MY_STRING="${MY_STRING//$'\n'/'%0A'}"
-            MY_STRING="${MY_STRING//$'\r'/'%0D'}"
-            echo "::set-output name=content::$MY_STRING" >> output.txt
+            echo $(gradle grade) >> output.txt
 
         - name: Display Output
+          if: always()
           run: cat output.txt
