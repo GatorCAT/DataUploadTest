@@ -134,11 +134,10 @@ jobs:
             Cluster_name: ${{secrets.MONGO_CLUSTER_NAME}}
             Collection_name: ${{secrets.MONGO_COLLECTION_NAME}}
           run:  |
-            mv output.txt Mongo_Upload
             cd Mongo_Upload
             pip install typer
             pip install pymongo
-            python Upload_to_mongo.py output.txt env.Username env.Password env.Cluster_name env.Collection_name
+            python Upload_to_mongo.py ../output.txt env.Username env.Password env.Cluster_name env.Collection_name
 
         - name: Display Output
           if: always()
