@@ -137,7 +137,8 @@ jobs:
             cd Mongo_Upload
             pip install typer
             pip install pymongo
-            python Upload_to_mongo.py ../output.txt env.Username env.Password env.Cluster_name env.Collection_name
+            python --version
+            python3 Upload_to_mongo.py ../output.txt env.Username env.Password env.Cluster_name env.Collection_name
 
         - name: Display Output
           if: always()
