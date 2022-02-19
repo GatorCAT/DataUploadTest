@@ -119,11 +119,13 @@ jobs:
             echo $(gradle grade) >> output.txt
 
         - name: Fetch Upload Repo
+          if: always()
           uses: actions/checkout@master
           with: 
             repository: GatorCAT/GatorCATUpload
         
         - name: Upload to MongoDB
+          if: always()
           run:  |
             cd GatorCATUpload
             poetry install
