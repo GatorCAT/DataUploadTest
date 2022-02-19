@@ -133,7 +133,7 @@ jobs:
             ls
             pip install typer
             pip install pymongo
-            python upload_to_mongo.py Output.txt ${{secrets.MONGO_USERNAME}} ${{secrets.MONGO_PASSWORD}} ${{secrets.MONGO_CLUSTER_NAME}} ${{secrets.MONGO_COLLECTION_NAME}}
+            python Upload_to_mongo.py Output.txt ${{secrets.MONGO_USERNAME}} ${{secrets.MONGO_PASSWORD}} ${{secrets.MONGO_CLUSTER_NAME}} ${{secrets.MONGO_COLLECTION_NAME}}
 
         - name: Display Output
           if: always()
