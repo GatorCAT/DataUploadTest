@@ -128,12 +128,17 @@ jobs:
         
         - name: Upload to MongoDB
           if: always()
+          env:
+            Username: ${{secrets.MONGO_USERNAME}}
+            Password: ${{secrets.MONGO_PASSWORD}}
+            Cluster_name: ${{secrets.MONGO_CLUSTER_NAME}}
+            Collection_name: ${{secrets.MONGO_COLLECTION_NAME}}
           run:  |
             cd Mongo_Upload
             ls
             pip install typer
             pip install pymongo
-            python Upload_to_mongo.py Output.txt ${{secrets.MONGO_USERNAME}} ${{secrets.MONGO_PASSWORD}} ${{secrets.MONGO_CLUSTER_NAME}} ${{secrets.MONGO_COLLECTION_NAME}}
+            python Upload_to_mongo.py Output.txt env.Username env.Password env.Cluster_name env.Collection_name
 
         - name: Display Output
           if: always()
